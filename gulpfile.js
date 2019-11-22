@@ -1,10 +1,21 @@
-const { src, dest } = require(`gulp`);
+const { src, dest, watch } = require(`gulp`);
+const { series } = require('gulp');
 const babel = require(`gulp-babel`);
 const sass = require(`gulp-sass`);
 const sassLint = require(`gulp-sass-lint`);
 const jsLinter = require(`gulp-eslint`);
+const htmlValidator = require(`gulp-html`);
+const htmlMinifier = require(`gulp-htmlmin`);
+const imageCompressor = require(`gulp-imagemin`);
+const cssCompressor = require('gulp-csso');
 const del = require(`del`);
-
+const browserSync = require(`browser-sync`);
+const reload = browserSync.reload;
+const TEMP_FOLDER = 'temp';
+const VIEWS_FOLDER = 'app/views/html';
+const HTMLPreprocessor = require(`gulp-nunjucks-render`);
+const data = require(`gulp-data`);
+const fs = require(`fs`);
 // Note: All the linter-related config files mentioned in the comments below are
 // empty. Part of this assignment is to populate them with your own config files from
 // the previous assignment.
@@ -28,7 +39,7 @@ let transpileJSForDev = () => {
  * @returns {*}
  */
 let compileCSSForDev = () => {
-    return src(`app/views/sass/main.scss`)
+    return src(`app/views/styles/main.scss`)
         .pipe(sassLint({configFile: './.sass-lint.yml'}))
         .pipe(sassLint.format())
         .pipe(sassLint.failOnError())
@@ -47,6 +58,68 @@ let lintJS = () => {
         .pipe(jsLinter(`./.eslintrc.json`))
         .pipe(jsLinter.formatEach(`compact`, process.stderr));
 };
+
+let validateHTML = () => {
+    return src(`app/views/html/*.html`)
+        .pipe(htmlValidator());
+};
+
+let compressHTML = () => {
+    return src(`app/views/html/*.html`)
+        .pipe(htmlMinifier({collapseWhitespace: true}))
+        .pipe(dest(`prod`));
+};
+
+let compileCSSForProd = () => {
+    return src(`app/views/styles/main.scss`)
+        .pipe(sass({outputStyle: 'compressed', precision: 10
+        }).on('error', sass.logError))
+        .pipe(cssCompressor())
+        .pipe(dest(`prod/styles`));
+};
+
+let compressThenCopyImagesToProdFolder = () =>  {
+    return src(`app/views/img/**/*`)
+        .pipe(imageCompressor({
+            optimizationLevel: 3, // For PNG files. Accepts 0 – 7; 3 is default.
+            progressive: true,    // For JPG files.
+            multipass: false,     // For SVG files. Set to true for compression.
+            interlaced: false     // For GIF files. Set to true for compression.
+        }))
+        .pipe(dest(`prod/img`));
+};
+
+let compileHTML = () => {
+    HTMLPreprocessor.nunjucks.configure({watch: false});
+
+    return src(`./app/views/*.html`)
+        .pipe(data(function () {
+            return JSON.parse(fs.readFileSync(`./app/models/links-file.json`));
+        }))
+        .pipe(HTMLPreprocessor())
+        .pipe(dest(TEMP_FOLDER));
+};
+
+let serve = () => {
+    browserSync({
+        server: {
+            baseDir: [
+                TEMP_FOLDER,
+                VIEWS_FOLDER
+            ]
+        }
+    });
+
+    watch([
+            `./app/views/*.html`,
+            `./app/views/css/*.css`,
+            `./app/controllers/*.*`,
+            `./app/controllers/**/**`,
+            `./app/models/*.json`
+        ],
+        compileHTML).on(`change`, reload);
+};
+
 
 /**
  * Use pure Node to delete the “temp” folder. Add folder paths to the
@@ -78,4 +151,11 @@ async function clean () {
 exports.lintJS = lintJS;
 exports.transpileJSForDev = transpileJSForDev;
 exports.compileCSSForDev = compileCSSForDev;
+exports.compileCSSForProd = compileCSSForProd;
+exports.validateHTML = validateHTML;
+exports.compressHTML = compressHTML;
+exports.build = series(validateHTML, compressHTML, compileCSSForProd, compressThenCopyImagesToProdFolder);
+exports.serve = series(compileHTML, serve);
+exports.compileHTML = compileHTML;
+exports.compressThenCopyImagesToProdFolder = compressThenCopyImagesToProdFolder;
 exports.clean = clean;

@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/code-warrior/assignment-3--senior-capstone--mwd-410--fall-2019"
+    "url": "git+https://github.com/code-warrior/assignment-3--senior-capstone--mwd-410--fall-2019.git"
   },
   "author": "The Student",
   "license": "ISC",
@@ -27,5 +27,15 @@
     "gulp-eslint": "^5.0.0",
     "gulp-sass": "^4.0.2",
     "gulp-sass-lint": "^1.4.0"
+  },
+  "dependencies": {
+    "browser-sync": "^2.26.7",
+    "gulp-csso": "^4.0.1",
+    "gulp-data": "^1.3.1",
+    "gulp-html": "^1.0.0",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-imagemin": "^6.2.0",
+    "gulp-nunjucks-render": "^2.2.3",
+    "sass": "^1.23.7"
   }
 }

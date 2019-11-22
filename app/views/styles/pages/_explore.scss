@@ -1,0 +1,17 @@
+#container .row1 {
+  //border: solid 3px red;
+  box-sizing: border-box;
+  margin: auto;
+  padding-top: 15px;
+
+}
+
+#container .img .images {
+  position: relative;
+  border: black 3px hidden;
+  max-width: 240px;
+  min-height: 120px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  display: inline-block;
+}

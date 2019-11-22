@@ -1,3 +1,44 @@
 // -----------------------------------------------------------------------------
 // This file contains styles that are specific to the home page.
 // -----------------------------------------------------------------------------
+
+//html {
+//  background-color: #eaf0fa;
+//}
+
+.welcome {
+  text-align: center;
+  font: 60px 'Raleway', sans-serif;
+  color: #98b2e6;
+  margin-top: 0;
+  text-shadow: none;
+  h2 {
+    text-shadow: 2px 2px  #4675d2;
+  }
+}
+
+.welcome input[type="button"],
+.welcome input[type="submit"]{
+  border: none;
+  background-color: #98b2e6;
+  color: #4675d2;
+  font-family: 'Raleway', sans-serif;
+  font-size: 24px;
+  padding: 8px 18px;
+  width: 200px;
+  text-align: center;
+  margin: 0 auto;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.22);
+}
+
+.welcome input[type="button"]:hover,
+.welcome input[type="submit"]:hover {
+  background-color: #4675d2;
+  color: #98b2e6;
+}
+
+
+#indexhtml {
+  background-color: #eaf0fa;
+
+}

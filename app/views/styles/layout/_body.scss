@@ -1,0 +1,22 @@
+#container {
+  display: inline-block;
+  position: relative;
+  top: 0;
+  margin-left: 150px;
+  /*left: 150px;*/
+  border: red 3px hidden;
+  //opacity: 0.7;
+}
+
+.img {
+  position: relative;
+}
+
+h1{
+  text-align: center;
+  font: 30px 'Raleway', sans-serif;
+  //font-weight: bold;
+  color: #98b6e7;
+  text-shadow: 2px 2px #4675d2;
+  margin-top: 0;
+}

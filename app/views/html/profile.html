@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Raleway:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link href="styles/main.css" rel="stylesheet" type="text/css">
+    <script src="https://kit.fontawesome.com/134ff1f3d5.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <nav class="nav">
+            <ul>
+                <li><a href="index.html">home</a></li>
+                <li><a class="active" href="profile.html"><i class="fas fa-palette fa-2x"></i></a></li>
+                <li id="proexplore"><a href="explore.html">explore</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="page">
+        <aside>
+            <button onclick="showProfile()" class="button">Portfolio Display</button>
+            <div id="profile"><i class="fas fa-user-circle fa-7x fa-align-center" style="color: #FFF;"></i></div>
+            <h1> Julia Drachenberg</h1>
+            <p> Bio: <br><br> Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+        </aside>
+    </div>
+    <div id="container">
+        <div class="row">
+            <span class="imgp">
+                <img class="imagesp one" src="img/bird.jpg" alt="">
+            </span>
+            <span class="imgp">
+                <img class="imagesp two" src="img/shark.jpg" alt="">
+            </span>
+        </div>
+
+        <div class="row">
+            <span class="imgp">
+                <img class="imagesp five" src="img/blackwhite.jpg" alt="">
+            </span>
+            <span class="imgp">
+                <img class="imagesp six" src="img/fish.jpg" alt="">
+            </span>
+        </div>
+
+        <div class="row">
+            <span class="imgp">
+                <img class="imagesp nine" src="img/cat.jpg" alt="">
+            </span>
+            <span class="imgp">
+                <img class="imagesp ten" src="img/bunny.jpg" alt="">
+            </span>
+        </div>
+
+        <div class="row">
+            <span class="imgp">
+                <img class="imagesp thirteen" src="img/gray.jpg" alt="">
+            </span>
+            <span class="imgp">
+                <img class="imagesp fourteen" src="img/gray.jpg" alt="">
+            </span>
+        </div>
+
+        <div class="row">
+            <span class="imgp">
+                <img class="imagesp seventeen" src="img/gray.jpg" alt="">
+            </span>
+            <span class="imgp">
+                <img class="imagesp eighteen" src="img/gray.jpg" alt="">
+            </span>
+
+        </div>
+    </div>
+
+    <script>
+        function showProfile() {
+            var x = document.getElementById("bio");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
+
+

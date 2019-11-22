@@ -1,17 +1,11 @@
 {
   "data": [
     {
-      "first_name": "",
-      "last_name": "",
-      "email": "",
-      "username": "",
-      "password": "",
-      "phone" : {
-        "mobile": {
-          "area_code": "",
-          "number": ""
-        }
-      }
+      "first_name": "Julia",
+      "last_name": "Drachenberg",
+      "email": "drachenbe@hartford.edu",
+      "username": "juliad37",
+      "password": "abc#123",
     }
   ]
 }
